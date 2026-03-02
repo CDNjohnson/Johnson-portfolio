@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Johnson Gbedze | Instructional Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a0;
+    --rust: #c05a2a;
+    --teal: #1a5c5c;
+    --teal-light: #e8f2f2;
+    --muted: #6b6458;
+    --border: #d4c9b8;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--teal);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.7;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 1;
+    color: var(--paper);
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 24px;
+    max-width: 340px;
+    line-height: 1.8;
+    animation: fadeUp 1s 0.2s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 14px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 48px;
+    width: fit-content;
+    transition: background 0.2s, transform 0.2s;
+    animation: fadeUp 1s 0.4s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  .hero-cta:hover { background: var(--gold-light); transform: translateX(4px); }
+  .hero-cta::after { content: '→'; font-size: 16px; }
+
+  .hero-right {
+    background: var(--paper);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-right::before {
+    content: 'ID';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 260px;
+    color: var(--border);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-block {
+    animation: fadeUp 1s ease both;
+  }
+  .stat-block:nth-child(2) { animation-delay: 0.1s; }
+  .stat-block:nth-child(3) { animation-delay: 0.2s; }
+  .stat-block:nth-child(4) { animation-delay: 0.3s; }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .stat-number sup {
+    font-size: 24px;
+    vertical-align: super;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .hero-right-bottom {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s 0.5s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .tag:hover { background: var(--teal); color: var(--paper); border-color: var(--teal); }
+
+  /* ── SECTION SHARED ── */
+  section {
+    padding: 100px 80px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    color: var(--ink);
+    max-width: 600px;
+  }
+
+  /* ── COMPETENCIES ── */
+  .competencies {
+    background: var(--ink);
+  }
+
+  .competencies .section-label { color: var(--gold); }
+  .competencies .section-title { color: var(--paper); }
+
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 64px;
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
+  }
+
+  .comp-card {
+    background: var(--ink);
+    padding: 40px 32px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .comp-card:hover { background: #1a1a1a; }
+  .comp-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .comp-card:hover::before { transform: scaleX(1); }
+
+  .comp-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  .comp-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--paper);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .comp-items {
+    list-style: none;
+    color: #888;
+    font-size: 12px;
+    line-height: 2;
+    font-family: 'DM Mono', monospace;
+  }
+  .comp-items li::before {
+    content: '— ';
+    color: var(--gold);
+  }
+
+  /* ── PROJECTS ── */
+  .projects { background: var(--teal-light); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .project-card {
+    background: white;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(26,92,92,0.12);
+  }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    background: var(--teal);
+    color: var(--paper);
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gold);
+  }
+
+  .project-card.featured::before { display: none; }
+
+  .project-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .project-card.featured .project-title {
+    font-size: 36px;
+    color: var(--paper);
+  }
+
+  .project-context {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .project-card.featured .project-context { color: var(--gold-light); }
+
+  .project-impact {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(201,168,76,0.1);
+    border-left: 2px solid var(--gold);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .project-card.featured .project-impact {
+    background: rgba(255,255,255,0.1);
+    color: var(--paper);
+  }
+
+  .project-impact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .meta-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 12px;
+    background: var(--teal-light);
+    color: var(--teal);
+    letter-spacing: 0.08em;
+  }
+
+  .project-card.featured .meta-pill {
+    background: rgba(255,255,255,0.15);
+    color: var(--gold-light);
+  }
+
+  /* ── TOOLKIT ── */
+  .toolkit { background: var(--paper); }
+
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 64px;
+    border: 1px solid var(--border);
+  }
+
+  .toolkit-col {
+    padding: 40px 32px;
+    border-right: 1px solid var(--border);
+  }
+  .toolkit-col:last-child { border-right: none; }
+
+  .toolkit-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .toolkit-items {
+    list-style: none;
+    font-size: 13px;
+    line-height: 2.2;
+    color: var(--ink);
+  }
+
+  .toolkit-items li {
+    padding-left: 16px;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .toolkit-items li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    font-size: 6px;
+    top: 7px;
+    color: var(--gold);
+  }
+  .toolkit-items li:hover { color: var(--teal); }
+
+  /* ── EDUCATION ── */
+  .education {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .education .section-label { color: var(--gold); }
+  .education .section-title { color: var(--paper); }
+
+  .edu-list {
+    margin-top: 48px;
+  }
+
+  .edu-item {
+    padding: 32px 0;
+    border-bottom: 1px solid #2a2a2a;
+    position: relative;
+    padding-left: 24px;
+  }
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 40px;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--paper);
+    margin-bottom: 6px;
+  }
+
+  .edu-school {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 8px;
+  }
+
+  .edu-year {
+    font-size: 11px;
+    color: #666;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .edu-right {
+    padding-top: 40px;
+  }
+
+  .contact-block {
+    background: #1a1a1a;
+    padding: 48px;
+    margin-top: 48px;
+  }
+
+  .contact-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--paper);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .contact-heading em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .contact-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    line-height: 2.2;
+  }
+
+  .contact-info a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-info a:hover { color: var(--gold-light); }
+
+  .availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin-top: 32px;
+  }
+  .availability-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #4caf50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a;
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  footer .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--paper);
+  }
+
+  footer .footer-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right::before { font-size: 140px; }
+    .profile-stats { grid-template-columns: 1fr 1fr; }
+    .comp-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
+    .toolkit-grid { grid-template-columns: 1fr 1fr; }
+    .toolkit-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .education { grid-template-columns: 1fr; }
+    section { padding: 64px 32px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="nav-logo">Portfolio · Instructional Design · 2025</div>
+    <div>
+      <h1 class="hero-name">Johnson<span>Gbedze</span></h1>
+      <p class="hero-tagline">Engineering Global-Scale Learning Through Data &amp; Technology</p>
+      <a href="#projects" class="hero-cta">View Projects</a>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.4);letter-spacing:0.15em;">
+      M.S. · Instructional Technology · USU
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="profile-stats">
+      <div class="stat-block">
+        <div class="stat-number">7<sup>+</sup></div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">5K<sup>+</sup></div>
+        <div class="stat-label">Facilitators Trained</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Countries Reached</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">45<sup>%</sup></div>
+        <div class="stat-label">Engagement Increase</div>
+      </div>
+    </div>
+    <div class="hero-right-bottom">
+      <p style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Specializations</p>
+      <div class="expertise-tags">
+        <span class="tag">ADDIE / SAM</span>
+        <span class="tag">xAPI</span>
+        <span class="tag">Kolibri LMS</span>
+        <span class="tag">AI Content</span>
+        <span class="tag">VR-BCI</span>
+        <span class="tag">OER</span>
+        <span class="tag">Raspberry Pi</span>
+        <span class="tag">Global Ed-Tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPETENCIES ── -->
+<section class="competencies">
+  <div class="section-label">Core Competencies</div>
+  <h2 class="section-title">Where Design Meets Technology</h2>
+  <div class="comp-grid">
+    <div class="comp-card reveal">
+      <div class="comp-number">01</div>
+      <div class="comp-title">Design Frameworks</div>
+      <ul class="comp-items">
+        <li>ADDIE Methodology</li>
+        <li>SAM Framework</li>
+        <li>Cognitive Load Theory</li>
+        <li>Experiential Learning</li>
+      </ul>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-number">02</div>
+      <div class="comp-title">Technical Integration</div>
+      <ul class="comp-items">
+        <li>xAPI / APIs</li>
+        <li>LMS Administration</li>
+        <li>Kolibri Platform</li>
+        <li>Raspberry Pi 4B</li>
+      </ul>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-number">03</div>
+      <div class="comp-title">Emerging Technologies</div>
+      <ul class="comp-items">
+        <li>AI-Driven Content</li>
+        <li>VR-BCI Research</li>
+        <li>Generative AI</li>
+        <li>Adaptive Learning</li>
+      </ul>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-number">04</div>
+      <div class="comp-title">Global Operations</div>
+      <ul class="comp-items">
+        <li>Multi-National Ed-Tech</li>
+        <li>OER Curation</li>
+        <li>Multilingual Training</li>
+        <li>SOP Development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="projects" id="projects">
+  <div class="section-label">Featured Projects</div>
+  <h2 class="section-title">Impact at Scale</h2>
+  <div class="projects-grid">
+
+    <!-- Featured -->
+    <div class="project-card featured reveal">
+      <div>
+        <div class="project-label">Project A · Global Operations</div>
+        <h3 class="project-title">Global Ed-Tech Scaling &amp; Ecosystem Architecture</h3>
+        <p class="project-context">Directed multi-national operations for 5,000+ facilitators across 8 countries. Architected a scalable e-learning ecosystem using Kolibri LMS and Raspberry Pi 4B servers to support both online and offline learning environments.</p>
+        <div class="project-meta">
+          <span class="meta-pill">Kolibri LMS</span>
+          <span class="meta-pill">Raspberry Pi 4B</span>
+          <span class="meta-pill">OpenEd Libraries</span>
+          <span class="meta-pill">SOP Design</span>
+        </div>
+      </div>
+      <div>
+        <div class="project-impact" style="margin-top:0;">
+          <div class="project-impact-label">Impact</div>
+          <div>Integrated localized OpenEd libraries and developed comprehensive SOPs for multimedia content, ensuring consistent delivery across diverse global regions.</div>
+        </div>
+        <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">5K+</div>
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Facilitators</div>
+          </div>
+          <div>
+            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">8</div>
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Countries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project B -->
+    <div class="project-card reveal">
+      <div class="project-label">Project B · Research</div>
+      <h3 class="project-title">VR-Based Cognitive Interventions</h3>
+      <p class="project-context">Graduate research at Utah State University focusing on nursing curricula modernization. Conducted a systematic meta-analysis of VR-BCI using Standardized Mean Differences (SMD) to quantify impacts on clinical reasoning.</p>
+      <div class="project-impact">
+        <div class="project-impact-label">Impact</div>
+        <div>Delivered data-driven recommendations for Generative AI integrations to maximize training ROI in clinical education.</div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-pill">VR-BCI</span>
+        <span class="meta-pill">Meta-Analysis</span>
+        <span class="meta-pill">SMD</span>
+        <span class="meta-pill">Gen AI</span>
+      </div>
+    </div>
+
+    <!-- Project C -->
+    <div class="project-card reveal">
+      <div class="project-label">Project C · Curriculum Design</div>
+      <h3 class="project-title">Evidence-Based Curriculum Refinement</h3>
+      <p class="project-context">Global SIS Education Initiative (SLC, UT). Designed and refined multimedia lesson plans and workbooks for junior and senior high students using evidence-based instructional strategies.</p>
+      <div class="project-impact">
+        <div class="project-impact-label">Impact</div>
+        <div>Achieved a <strong>45% increase in learner engagement</strong> through targeted mentorship frameworks and feedback-driven iterations.</div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-pill">Curriculum Design</span>
+        <span class="meta-pill">Multimedia</span>
+        <span class="meta-pill">Mentorship</span>
+        <span class="meta-pill">+45% Engagement</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TOOLKIT ── -->
+<section class="toolkit">
+  <div class="section-label">Technical Toolkit</div>
+  <h2 class="section-title">Tools &amp; Specializations</h2>
+  <div class="toolkit-grid reveal">
+    <div class="toolkit-col">
+      <div class="toolkit-category">LMS / Server</div>
+      <ul class="toolkit-items">
+        <li>Kolibri LMS</li>
+        <li>Raspberry Pi 4B</li>
+        <li>OpenEd Learning</li>
+        <li>Server Architecture</li>
+      </ul>
+    </div>
+    <div class="toolkit-col">
+      <div class="toolkit-category">Content Creation</div>
+      <ul class="toolkit-items">
+        <li>Multimedia Design</li>
+        <li>OER Curation</li>
+        <li>Website Publishing</li>
+        <li>Localization</li>
+      </ul>
+    </div>
+    <div class="toolkit-col">
+      <div class="toolkit-category">Analysis</div>
+      <ul class="toolkit-items">
+        <li>xAPI / APIs</li>
+        <li>Data Analytics</li>
+        <li>Metadata Analysis</li>
+        <li>SMD / Statistics</li>
+      </ul>
+    </div>
+    <div class="toolkit-col">
+      <div class="toolkit-category">Strategy</div>
+      <ul class="toolkit-items">
+        <li>ADDIE / SAM</li>
+        <li>Cost-Benefit Strategy</li>
+        <li>Contractual KPIs</li>
+        <li>Global Ops</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section class="education">
+  <div>
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic Foundation</h2>
+    <div class="edu-list">
+      <div class="edu-item reveal">
+        <div class="edu-degree">M.S. Instructional Technology &amp; Learning Sciences</div>
+        <div class="edu-school">Utah State University</div>
+        <div class="edu-year">2024 – 2026</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-degree">B.S. Business Management (Entrepreneurship)</div>
+        <div class="edu-school">Brigham Young University</div>
+        <div class="edu-year">2018 – 2021</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-degree">Certificate in Business Leadership Skills</div>
+        <div class="edu-school">Brigham Young University</div>
+        <div class="edu-year">2020</div>
+      </div>
+    </div>
+  </div>
+  <div class="edu-right reveal">
+    <div class="contact-block">
+      <h3 class="contact-heading">Let's Build Something <em>Impactful</em></h3>
+      <div class="contact-info">
+        <div>Instructional Designer</div>
+        <div>Salt Lake City, Utah</div>
+        <div style="margin-top:16px;">
+          <a href="mailto:johnson.gbedze@example.com">johnson.gbedze@email.com</a>
+        </div>
+        <div>
+          <a href="https://linkedin.com/in/johnsongbedze" target="_blank">linkedin.com/in/johnsongbedze</a>
+        </div>
+      </div>
+      <div class="availability-badge">Available for New Opportunities</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="logo">Johnson Gbedze</div>
+  <div class="footer-mono">Instructional Designer · Global Ed-Tech Specialist</div>
+  <div class="footer-mono">© 2025 · All Rights Reserved</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
