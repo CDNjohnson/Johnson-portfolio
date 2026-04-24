@@ -277,6 +277,27 @@
   .exp-highlights { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .highlight-pill { font-family: 'DM Mono', monospace; font-size: 10px; padding: 5px 12px; background: var(--teal-light); color: var(--teal); letter-spacing: 0.06em; }
 
+  /* LIVE badge */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(26,92,92,0.08);
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-bottom: 16px;
+    width: fit-content;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .live-badge:hover { background: var(--teal); color: var(--paper); }
+  .live-badge::before { content: ''; width: 6px; height: 6px; background: #4caf50; border-radius: 50%; animation: pulse 2s infinite; }
+
   /* COMPETENCIES */
   .competencies { background: var(--ink); }
   .competencies .section-title { color: var(--paper); }
@@ -329,6 +350,24 @@
   .project-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
   .meta-pill { font-family: 'DM Mono', monospace; font-size: 10px; padding: 4px 12px; background: var(--teal-light); color: var(--teal); letter-spacing: 0.08em; }
   .project-card.featured .meta-pill { background: rgba(255,255,255,0.15); color: var(--gold-light); }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .project-link:hover { color: var(--teal); border-color: var(--teal); }
+  .project-link::after { content: '→'; }
 
   /* TOOLKIT */
   .toolkit { background: var(--paper); }
@@ -425,7 +464,7 @@
       <p class="hero-profile-summary">High-impact Instructional Designer with 7+ years building scalable, data-driven learning ecosystems across 8 countries. Expert in AI-driven content creation, xAPI integration, and hybrid ed-tech deployment — turning complex learning challenges into measurable results.</p>
       <a href="#projects" class="hero-cta">View My Work</a>
     </div>
-    <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.3);letter-spacing:0.15em;">M.S. Instructional Technology · Utah State University</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.3);letter-spacing:0.15em;">M.A. Instructional Technology · Utah State University</div>
   </div>
 
   <div class="hero-right">
@@ -459,7 +498,7 @@
         <span class="tag">Raspberry Pi</span>
         <span class="tag">Global Ed-Tech</span>
         <span class="tag">Generative AI</span>
-        <span class="tag">Multilingual</span>
+        <span class="tag">Adaptive Learning</span>
       </div>
     </div>
   </div>
@@ -470,6 +509,30 @@
   <div class="section-label">Professional Experience</div>
   <h2 class="section-title">A Career Built on Impact</h2>
   <div class="exp-list">
+
+    <!-- LexiLearn — MOST RECENT -->
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-dates">2024 — 2026</div>
+        <div class="exp-org">Utah State University</div>
+        <div class="exp-location">Logan, UT, USA</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">LexiLearn — AI-Powered Adaptive Learning App</div>
+        <a href="https://lexi-learn-sigma.vercel.app" target="_blank" rel="noopener" class="live-badge">● Live App</a>
+        <p class="exp-description">Designed and developed LexiLearn as a Masters capstone project — a full-stack, AI-powered adaptive learning web application purpose-built for students with dyslexia. Combining evidence-based instructional design with modern technology, LexiLearn delivers personalized, accessible, and engaging learning experiences grounded in Orton-Gillingham methodology, Universal Design for Learning (UDL), and Structured Literacy principles. The app features an AI tutor named Ady, powered by Groq LLaMA 3.3, that provides Duolingo-style explanations, real-time feedback, and encouragement tailored to each learner's pace and needs.</p>
+        <div class="exp-highlights">
+          <span class="highlight-pill">Orton-Gillingham</span>
+          <span class="highlight-pill">UDL Framework</span>
+          <span class="highlight-pill">Groq LLaMA 3.3</span>
+          <span class="highlight-pill">Firebase Auth</span>
+          <span class="highlight-pill">Structured Literacy</span>
+          <span class="highlight-pill">Speech Recognition</span>
+          <span class="highlight-pill">Adaptive Learning</span>
+          <span class="highlight-pill">WCAG 2.1</span>
+        </div>
+      </div>
+    </div>
 
     <div class="exp-item reveal">
       <div class="exp-meta">
@@ -604,36 +667,57 @@
   <h2 class="section-title">Impact at Scale</h2>
   <div class="projects-grid">
 
+    <!-- LexiLearn featured -->
     <div class="project-card featured reveal">
       <div>
-        <div class="project-label">Project A · Global Operations</div>
-        <h3 class="project-title">Global Ed-Tech Ecosystem Architecture</h3>
-        <p class="project-context">Orchestrated multi-national Ed-Tech operations spanning 8 countries and 5,000+ facilitators. Designed and deployed a resilient e-learning ecosystem powered by Kolibri LMS and Raspberry Pi 4B servers — engineered for both online and offline environments so no learner is left behind by connectivity constraints.</p>
+        <div class="project-label">Capstone Project · Accessible Ed-Tech</div>
+        <h3 class="project-title">LexiLearn — Adaptive Learning for Dyslexia</h3>
+        <p class="project-context">A full-stack AI-powered web application designed from the ground up to support students with dyslexia. LexiLearn blends Orton-Gillingham methodology, UDL principles, and cutting-edge AI to deliver personalized, accessible literacy experiences — featuring 4 game modes, 47 Disney/Pixar story passages across grades K–8, speech recognition, and a teacher dashboard.</p>
         <div class="project-meta">
-          <span class="meta-pill">Kolibri LMS</span>
-          <span class="meta-pill">Raspberry Pi 4B</span>
-          <span class="meta-pill">OpenEd Libraries</span>
-          <span class="meta-pill">SOP Design</span>
+          <span class="meta-pill">Groq LLaMA 3.3</span>
+          <span class="meta-pill">Firebase</span>
+          <span class="meta-pill">Vercel</span>
+          <span class="meta-pill">Web Speech API</span>
+          <span class="meta-pill">Atkinson Hyperlegible</span>
         </div>
+        <a href="https://lexi-learn-sigma.vercel.app" target="_blank" rel="noopener" class="project-link" style="color:var(--gold-light);border-color:rgba(232,213,160,0.3);">Visit Live App</a>
       </div>
       <div>
         <div class="project-impact">
           <div class="project-impact-label">Impact</div>
-          <div>Integrated localized OpenEd libraries and established comprehensive multimedia SOPs, delivering consistent, high-quality learning across diverse regions — from urban centers to low-connectivity rural communities.</div>
+          <div>Built with WCAG 2.1 accessibility standards, a dyslexia font toggle (Atkinson Hyperlegible), text-to-speech, a reading ruler, and a light-default adaptive theme system — ensuring every learner can engage comfortably regardless of their needs.</div>
         </div>
         <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
           <div>
-            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">5K+</div>
-            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Facilitators</div>
+            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">47</div>
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Story Passages</div>
           </div>
           <div>
-            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">8</div>
-            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Countries</div>
+            <div style="font-family:'DM Serif Display',serif;font-size:40px;color:var(--gold);">4</div>
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(232,213,160,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Game Modes</div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Project A -->
+    <div class="project-card reveal">
+      <div class="project-label">Project A · Global Operations</div>
+      <h3 class="project-title">Global Ed-Tech Ecosystem Architecture</h3>
+      <p class="project-context">Orchestrated multi-national Ed-Tech operations spanning 8 countries and 5,000+ facilitators. Designed and deployed a resilient e-learning ecosystem powered by Kolibri LMS and Raspberry Pi 4B servers — engineered for both online and offline environments.</p>
+      <div class="project-impact">
+        <div class="project-impact-label">Impact</div>
+        <div>Integrated localized OpenEd libraries and established comprehensive multimedia SOPs, delivering consistent learning from urban centers to low-connectivity rural communities.</div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-pill">Kolibri LMS</span>
+        <span class="meta-pill">Raspberry Pi 4B</span>
+        <span class="meta-pill">OpenEd</span>
+        <span class="meta-pill">5K+ Facilitators</span>
+      </div>
+    </div>
+
+    <!-- Project B -->
     <div class="project-card reveal">
       <div class="project-label">Project B · Graduate Research</div>
       <h3 class="project-title">VR-Based Cognitive Interventions</h3>
@@ -647,22 +731,6 @@
         <span class="meta-pill">Meta-Analysis</span>
         <span class="meta-pill">SMD</span>
         <span class="meta-pill">Gen AI</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-label">Project C · Curriculum Design</div>
-      <h3 class="project-title">Evidence-Based Curriculum Refinement</h3>
-      <p class="project-context">At the Global SIS Education Initiative, designed and continuously iterated on multimedia lesson plans and workbooks for junior and senior high students — using evidence-based strategies to close performance gaps and elevate engagement.</p>
-      <div class="project-impact">
-        <div class="project-impact-label">Impact</div>
-        <div>Achieved a <strong>45% increase in learner engagement</strong> through targeted mentorship frameworks, student feedback loops, and data-informed curriculum iterations.</div>
-      </div>
-      <div class="project-meta">
-        <span class="meta-pill">Curriculum Design</span>
-        <span class="meta-pill">Multimedia</span>
-        <span class="meta-pill">Mentorship</span>
-        <span class="meta-pill">+45% Engagement</span>
       </div>
     </div>
 
@@ -680,7 +748,7 @@
         <li>Kolibri LMS</li>
         <li>Raspberry Pi 4B</li>
         <li>OpenEd / RACHEL</li>
-        <li>Server Architecture</li>
+        <li>Vercel / Firebase</li>
       </ul>
     </div>
     <div class="toolkit-col">
@@ -688,8 +756,8 @@
       <ul class="toolkit-items">
         <li>Multimedia Design</li>
         <li>OER Curation</li>
-        <li>Website Publishing</li>
-        <li>Offline Modulization</li>
+        <li>Adaptive App Dev</li>
+        <li>Accessibility Design</li>
       </ul>
     </div>
     <div class="toolkit-col">
@@ -705,7 +773,7 @@
       <div class="toolkit-category">Strategy</div>
       <ul class="toolkit-items">
         <li>ADDIE / SAM</li>
-        <li>Cost-Benefit Analysis</li>
+        <li>UDL / Orton-Gillingham</li>
         <li>Contractual KPIs</li>
         <li>Global Operations</li>
       </ul>
@@ -724,7 +792,7 @@
       <div class="vol-org">Geneva Office for Human Rights Education · Geneva, Switzerland</div>
       <p class="vol-desc">Training facilitators to deliver human rights education grounded in the UN Universal Declaration of Human Rights. Integrated OpenEd tools for rural, low-connectivity communities and built partnerships with government agencies, schools, NGOs, interfaith groups, and the Office of the National Chief Imam.</p>
     </div>
-     <div class="vol-card reveal">
+    <div class="vol-card reveal">
       <div class="vol-dates">Feb 2015 — Mar 2017</div>
       <div class="vol-role">LDS Missionary</div>
       <div class="vol-org">Church of Jesus Christ of Latter-day Saints · Port Harcourt, Nigeria</div>
@@ -740,7 +808,7 @@
     <h2 class="section-title">Academic Foundation</h2>
     <div class="edu-list">
       <div class="edu-item reveal">
-        <div class="edu-degree">M.S. Instructional Technology &amp; Learning Sciences</div>
+        <div class="edu-degree">M.A. Instructional Technology &amp; Learning Sciences</div>
         <div class="edu-emphasis">Learning Sciences &amp; Human-Computer Interaction</div>
         <div class="edu-school">Utah State University · Logan, Utah</div>
         <div class="edu-year">2024 – 2026</div>
